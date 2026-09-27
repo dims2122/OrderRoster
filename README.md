@@ -2,7 +2,7 @@
 
 Aplikasi ini menggunakan konsep **tabungan/pencatatan penghasilan pribadi**, bukan transaksi penjualan roster.
 
-## Cara kerja
+## Cara kerja 
 - Tambahkan penghasilan sebanyak yang kamu mau pada tanggal yang sama.
 - Setiap catatan memiliki tanggal, sumber, keterangan, dan nominal.
 - Total Penghasilan Hari Ini otomatis menjumlahkan semua catatan pada tanggal tersebut.

@@ -6,7 +6,7 @@ create table if not exists public.income_entries (
   source text not null,
   description text default '',
   amount numeric(14,2) not null check (amount >= 0),
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now() 
 );
 
 alter table public.income_entries enable row level security;

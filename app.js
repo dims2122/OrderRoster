@@ -5,7 +5,7 @@
 
   const els = {
     form: $('incomeForm'),
-    date: $('income_date'),
+    date: $('income_date'), 
     source: $('source'),
     description: $('description'),
     amount: $('amount'),
