@@ -13,7 +13,7 @@
   const quantity = Number($("quantity").value) || 0;
   const unitPrice = Number($("unit_price").value) || 0;
   const totalPrice = quantity * unitPrice;
-  const itemIncome = quantity * 1000;
+  const itemIncome = quantity * 1000; 
   $("totalDisplay").textContent = money(totalPrice);
   $("incomeDisplay").textContent = money(itemIncome);
  }
