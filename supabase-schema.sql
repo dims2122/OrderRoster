@@ -11,7 +11,7 @@ create table if not exists public.transactions (
   item_income numeric(14,2) not null check (item_income >= 0),
   created_at timestamptz not null default now()
 );
-
+ 
 alter table public.transactions enable row level security;
 
 -- Mode awal untuk pemakaian pribadi tanpa login: anon dapat membaca/menambahkan data.

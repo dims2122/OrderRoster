@@ -9,7 +9,7 @@
  menu.onclick=()=>{let open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open));};
  document.querySelectorAll(".navtab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".navtab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".view").forEach(v=>v.hidden=v.id!==b.dataset.view);nav.classList.remove("open");if(b.dataset.view==="reportView")loadReport();});
  function say(el,text,type){el.textContent=text;el.className="message "+(type||"");}
- function update() {
+ function update() { 
   const quantity = Number($("quantity").value) || 0;
   const unitPrice = Number($("unit_price").value) || 0;
   const totalPrice = quantity * unitPrice;

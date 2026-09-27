@@ -2,7 +2,7 @@
 
 ## Isi ZIP
 - `index.html`, `style.css`, `app.js`: aplikasi responsif dengan tampilan yang menyesuaikan layar HP.
-- `config.js`: tempat URL dan anon/publishable key Supabase.
+- `config.js`: tem pat URL dan anon/publishable key Supabase.
 - `supabase-schema.sql`: struktur tabel dan policy awal.
 - `README.md`: panduan pemasangan.
 
