@@ -1,4 +1,5 @@
 <!doctype html>
+<<<<<<< HEAD
 <html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Roster Cilegon | Transaksi</title><link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head>
@@ -32,3 +33,217 @@
 <p id="reportMessage" class="message"></p></section></section>
 <footer>© <span id="year"></span> Roster Cilegon · Data tersimpan di Supabase</footer></main>
 <script src="config.js"></script><script src="app.js"></script></body></html>
+=======
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5b91f">
+  <title>Penghasilan Harian | Tabungan</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="topbar"> 
+    <a class="brand" href="#" aria-label="Penghasilan Harian">
+      <span class="brand-mark">P</span>
+      <span class="brand-copy">
+        <strong>PENGHASILAN</strong>
+        <small>H A R I A N</small>
+      </span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">☰</button>
+
+    <nav class="nav" id="nav" aria-label="Navigasi utama">
+      <button class="navtab active" type="button" data-view="formView">＋ Tambah Penghasilan</button>
+      <button class="navtab" type="button" data-view="reportView">▥ Laporan</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <!-- ==================== INPUT ==================== -->
+    <section id="formView" class="view">
+      <div class="intro">
+        <span class="intro-icon">💰</span>
+        <div>
+          <h1>Tambah Penghasilan</h1>
+          <p>Catat semua uang yang kamu dapat. Satu hari boleh memiliki banyak pemasukan.</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <form id="incomeForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="income_date">Tanggal</label>
+              <input id="income_date" type="date" required>
+            </div>
+
+            <div class="field">
+              <label for="source">Sumber Penghasilan</label>
+              <input id="source" type="text" maxlength="120" placeholder="Contoh: Freelance, YouTube, jualan" required>
+            </div>
+
+            <div class="field field-full">
+              <label for="description">Keterangan <span>(opsional)</span></label>
+              <input id="description" type="text" maxlength="250" placeholder="Contoh: Edit video klien / pembayaran order">
+            </div>
+
+            <div class="field field-full">
+              <label for="amount">Nominal Penghasilan</label>
+              <div class="input-unit">
+                <span class="prefix">Rp</span>
+                <input id="amount" type="number" min="0" step="1" inputmode="numeric" placeholder="Masukkan nominal" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="daily-total">
+            <div>
+              <span>Total Penghasilan Hari Ini</span>
+              <small>Penghasilan tersimpan + nominal yang sedang kamu ketik</small>
+            </div>
+            <strong id="todayTotal">Rp0</strong>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn primary" id="saveBtn" type="submit">Simpan Penghasilan <span>→</span></button>
+            <button class="btn secondary" type="reset">Kosongkan Form</button>
+          </div>
+
+          <p id="formMessage" class="message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="section-heading">
+          <div>
+            <h2>Penghasilan Hari Ini</h2>
+            <p>Semua pemasukan yang sudah kamu simpan pada tanggal yang dipilih.</p>
+          </div>
+        </div>
+        <div id="todayList" class="income-list">
+          <div class="empty-list">Memuat penghasilan...</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==================== REPORT ==================== -->
+    <section id="reportView" class="view" hidden>
+      <div class="intro">
+        <span class="intro-icon">▥</span>
+        <div>
+          <h1>Laporan Penghasilan</h1>
+          <p>Lihat total penghasilan per hari, per bulan, atau berdasarkan rentang tanggal.</p>
+        </div>
+      </div>
+
+      <section class="panel report-panel">
+        <div class="filters">
+          <div class="field">
+            <label for="monthFilter">Pilih Bulan</label>
+            <input id="monthFilter" type="month">
+          </div>
+          <div class="field">
+            <label for="dateFrom">Dari Tanggal</label>
+            <input id="dateFrom" type="date">
+          </div>
+          <div class="field">
+            <label for="dateTo">Sampai Tanggal</label>
+            <input id="dateTo" type="date">
+          </div>
+        </div>
+
+        <div class="report-actions">
+          <button class="btn primary" id="applyFilter" type="button">Tampilkan Laporan</button>
+          <button class="btn secondary" id="exportBtn" type="button">Ekspor CSV</button>
+        </div>
+
+        <div class="stats">
+          <article class="stat blue">
+            <small>Total Catatan</small>
+            <strong id="statCount">0</strong>
+          </article>
+          <article class="stat gold">
+            <small>Hari Berpenghasilan</small>
+            <strong id="statDays">0 hari</strong>
+          </article>
+          <article class="stat green">
+            <small>Total Penghasilan</small>
+            <strong id="statRevenue">Rp0</strong>
+          </article>
+        </div>
+
+        <div class="chart-card">
+          <div class="section-heading">
+            <div>
+              <h2>Grafik Penghasilan</h2>
+              <p id="reportSubtitle">Belum ada laporan</p>
+            </div>
+          </div>
+          <div id="chart" class="chart">
+            <p class="empty">Belum memuat laporan.</p>
+          </div>
+        </div>
+
+        <div class="history">
+          <div class="section-heading">
+            <div>
+              <h2>Ringkasan Per Hari</h2>
+              <p>Total seluruh pemasukan yang terjadi pada masing-masing tanggal.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Catatan</th>
+                  <th>Sumber</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody id="dailyBody">
+                <tr><td colspan="4" class="empty">Belum memuat laporan.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="history">
+          <div class="section-heading">
+            <div>
+              <h2>Detail Penghasilan</h2>
+              <p>Daftar semua pemasukan yang tercatat pada periode tersebut.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Sumber</th>
+                  <th>Keterangan</th>
+                  <th>Nominal</th>
+                </tr>
+              </thead>
+              <tbody id="reportBody">
+                <tr><td colspan="4" class="empty">Belum memuat laporan.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p id="reportMessage" class="message" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+
+    <footer>© <span id="year"></span> Penghasilan Harian · Data tersimpan di Supabase</footer>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+>>>>>>> 1f05571a4112efd9e26a11bdfbddf878522020a2
