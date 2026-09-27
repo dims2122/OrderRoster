@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roster Cilegon | Transaksi</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head>
+<body>
+<header class="topbar"><a class="brand" href="#"><span class="brand-mark">R</span><span><b>ROSTER</b><small>C I L E G O N</small></span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+<nav class="nav" id="nav"><button class="navtab active" data-view="formView">▤ Form Transaksi</button><button class="navtab" data-view="reportView">▥ Laporan</button></nav></header>
+<main class="layout">
+<section id="formView" class="view">
+<div class="intro"><span class="intro-icon">▤</span><div><h1>Form Transaksi</h1><p>Catat detail pelanggan dan transaksi roster.</p></div></div>
+<section class="panel"><form id="transactionForm">
+<div class="field"><label for="customer_name">Nama</label><input id="customer_name" placeholder="Masukkan nama pelanggan" required maxlength="120"></div>
+<div class="field"><label for="whatsapp">No. WhatsApp</label><input id="whatsapp" type="tel" placeholder="Contoh: 0812 3456 7890" required maxlength="30"></div>
+<div class="field"><label for="location">Lokasi</label><input id="location" placeholder="Alamat / lokasi pengiriman" required maxlength="300"></div>
+<div class="field"><label for="transaction_date">Tanggal Transaksi</label><input id="transaction_date" type="date" required></div>
+<div class="field"><label for="quantity">Banyaknya Barang</label><div class="input-unit"><input id="quantity" type="number" min="1" step="1" placeholder="Jumlah barang" required><span>pcs</span></div></div>
+<div class="field"><label for="unit_price">Harga Negosiasi (per pcs)</label><div class="input-unit"><span class="prefix">Rp</span><input id="unit_price" type="number" min="0" step="1" placeholder="Harga disepakati" required></div></div>
+<div class="totals"><div class="total-row"><div><span>Total Harga</span><small>Jumlah × harga negosiasi</small></div><strong id="totalDisplay">Rp 0</strong></div>
+<div class="total-row income"><div><span>Pendapatan dari Barang</span><small>Rp1.000 per pcs × jumlah barang</small></div><strong id="incomeDisplay">Rp 0</strong></div></div>
+<div class="form-actions"><button class="btn primary" id="saveBtn" type="submit">Simpan Transaksi <span>→</span></button><button class="btn secondary" type="reset">Kosongkan Form</button></div><p id="formMessage" class="message" role="status"></p>
+</form></section></section>
+<section id="reportView" class="view" hidden>
+<div class="intro"><span class="intro-icon">▥</span><div><h1>Laporan Transaksi</h1><p>Cek transaksi per bulan, rentang tanggal, dan grafik penjualan.</p></div></div>
+<section class="panel report-panel">
+<div class="filters"><div class="field"><label for="monthFilter">Pilih Bulan</label><input id="monthFilter" type="month"></div><div class="field"><label for="dateFrom">Dari Tanggal</label><input id="dateFrom" type="date"></div><div class="field"><label for="dateTo">Sampai Tanggal</label><input id="dateTo" type="date"></div></div>
+<div class="report-actions"><button class="btn primary" id="applyFilter">Tampilkan Laporan</button><button class="btn secondary" id="exportBtn">Ekspor Excel (CSV)</button></div>
+<div class="stats"><article class="stat blue"><small>Total Transaksi</small><strong id="statCount">0</strong></article><article class="stat green"><small>Total Barang</small><strong id="statQty">0 pcs</strong></article><article class="stat gold"><small>Total Pendapatan</small><strong id="statRevenue">Rp 0</strong></article></div>
+<div class="chart-card"><div class="section-heading"><div><h2>Grafik Pendapatan</h2><p>Akumulasi nilai transaksi per tanggal.</p></div></div><div id="chart" class="chart"><p class="empty">Pilih periode untuk melihat grafik.</p></div></div>
+<div class="history"><div class="section-heading"><div><h2>Detail Transaksi</h2><p id="reportSubtitle">Pilih bulan atau rentang tanggal.</p></div></div>
+<div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Nama</th><th>No. WA</th><th>Lokasi</th><th>Jumlah</th><th>Harga/pcs</th><th>Total</th></tr></thead><tbody id="reportBody"><tr><td colspan="7" class="empty">Belum memuat laporan.</td></tr></tbody></table></div></div>
+<p id="reportMessage" class="message"></p></section></section>
+<footer>© <span id="year"></span> Roster Cilegon · Data tersimpan di Supabase</footer></main>
+<script src="config.js"></script><script src="app.js"></script></body></html>
